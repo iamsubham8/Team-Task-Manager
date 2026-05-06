@@ -2,7 +2,10 @@ const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 
 const dbPath = path.resolve(__dirname, 'database.sqlite');
-const db = new sqlite3.Database(dbPath);
+
+// Vercel has a read-only filesystem, so we MUST use an in-memory database there.
+// Locally and on Railway, we will use the persistent database.sqlite file.
+const db = process.env.VERCEL ? new sqlite3.Database(':memory:') : new sqlite3.Database(dbPath);
 
 db.serialize(() => {
     // Enable foreign key constraints
