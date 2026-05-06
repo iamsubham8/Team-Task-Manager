@@ -4,7 +4,7 @@
   "description": "Team Task Manager Full-Stack Application",
   "scripts": {
     "postinstall": "cd client && npm install && npm run build && cd ../server && npm install",
-    "start": "cd server && node server.js"
+    "start": "node server/server.js"
   },
   "engines": {
     "node": ">=20.19.0"
